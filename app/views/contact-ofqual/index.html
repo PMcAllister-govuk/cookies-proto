@@ -1,0 +1,134 @@
+{% extends "layouts/main.html" %}
+
+{% set serviceName = "Contact Ofqual" %}
+
+{% block head %}
+  {{ super() }}
+  <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block pageTitle %}
+ Contacting Ofqual – Ofqual – GOV.UK (Prototype)
+{% endblock %}
+
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+{% set html %}
+  <p class="govuk-body">We use some essential cookies to make this service work.</p>
+  <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+{% endset %}
+
+{% set acceptHtml %}
+  <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+{% set rejectHtml %}
+  <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+{% block bodyStart %}
+  {{ govukCookieBanner({
+    ariaLabel: "Cookies on "+serviceName,
+    messages: [
+      {
+        headingText: "Cookies on "+serviceName,
+        html: html,
+        actions: [
+          {
+            text: "Accept analytics cookies",
+            type: "button"
+          },
+          {
+            text: "Reject analytics cookies",
+            type: "button"
+          },
+          {
+            text: "View cookies",
+            href: "cookies"
+          }
+        ]
+      },
+      {
+        html: acceptHtml,
+        role: "alert",
+        hidden: true,
+        actions: [
+          {
+            text: "Hide cookie message",
+            type: "button"
+          }
+        ]
+      },
+      {
+        html: rejectHtml,
+        role: "alert",
+        hidden: true,
+        actions: [
+          {
+            text: "Hide cookie message",
+            type: "button"
+          }
+        ]
+      }
+    ]
+  }) }}
+
+  {{ super() }}
+{% endblock %}
+
+
+
+{% set backLink = "/" + version + "/start" %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-l" id="contacting-ofqual">Contacting Ofqual</h1>
+
+  <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/ofqual-rolling-update" class="govuk-link">latest updates from Ofqual</a>, which contains guidance to common enquiries.</p>
+
+  <h2 class="govuk-heading-m" id="enquiries"><a href="https://contact.ofqual.gov.uk/contact-ofqual/start" class="govuk-link">Enquiries</a></h2>
+  <p class="govuk-body">Ask Ofqual questions.</p>
+
+  <h2 class="govuk-heading-m" id="complaints-malpractice-whistleblowing"><a href="https://complaints.ofqual.gov.uk/" class="govuk-link">Complaints, malpractice and whistleblowing</a></h2>
+  <p class="govuk-body">Make a complaint, report a concern of wrongdoing or malpractice or raise a concern as a whistleblower.</p>
+
+  <h2 class="govuk-heading-m" id="foi"><a href="https://contact.ofqual.gov.uk/freedom-of-information-request/start" class="govuk-link">Freedom of Information requests</a></h2>
+  <p class="govuk-body">Ask to see recorded information held by Ofqual.</p>
+
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+  <h2 class="govuk-heading-m" id="awarding-organisations">Awarding Organisations</h2>
+  <p class="govuk-body">If you are an Awarding Organisation and have a question for Ofqual, please log into your account on the Portal and use the Contact the Regulator area.</p>
+{% endblock %}
+
+{% block footer %}
+
+  {% from "govuk/components/footer/macro.njk" import govukFooter %}
+
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "#",
+          text: "Accessibility"
+        },
+        {
+          href: "cookies?cookiessaved=0",
+          text: "Cookies"
+        },
+        {
+          href: "#",
+          text: "Privacy policy"
+        }
+      ]
+    }
+  }) }}
+{% endblock %}
